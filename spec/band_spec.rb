@@ -6,3 +6,7 @@ describe(Band) do
     expect(band.save()).to(eq(false))
   end
 end
+
+describe(Band) do
+  it { should have_and_belong_to_many(:venues)}
+end
