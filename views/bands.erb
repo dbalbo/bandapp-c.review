@@ -1,32 +1,20 @@
-<h1><%= @band.name %></h1>
+<h1>This is all about all the bands:</h1>
 
+<p>Add a band to the big band list:</p>
 
-
-<form action="/bands/<%=@band.id()%>" method="post">
-  <input name="_method" type="hidden" value="patch">
-  <div class="form-group">
-    <input name="name" id="name" type="text"><br>
-  </div>
-  <button type="submit" class="btn btn-success">Update Bands</button>
+<form action="/bands" method="post">
+  <div class='form-group'>
+    <label for="name">Band's name:</label>
+      <input id="name" name="name" type="text">
+    </div>
+    <button type="submit" class='btn btn-success'>Add band</button>
 </form>
-<br>
-<form action="/bands/<%= @band.id %>" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <div class="form-group">
-    <button type="submit" class="btn-danger">Delete</button>
-  </div>
-</form>
-<br><br>
-<% if @band.venues().any? %>
 
-<h3>Here are all the venues for this band:</h3>
 
-<ul>
-  <% @band.venues().each() do |venue| %>
-  <li><%= venue.name() %></li>
-  <% end %>
-</ul>
+<h3> All the damn bands</h3>
+  <ul>
+    <% @bands.each() do |band| %>
+    <li><a href='/band/<%= band.id %>'><%= band.name %></a></li>
+  <% end %>  
 
-<% else %>
-<p> There are no venues for this band yet!</p>
-<% end %>
+<p><a href="/">Return to Main Page</a></p>

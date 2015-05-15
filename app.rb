@@ -11,28 +11,63 @@ get('/') do
   erb(:index)
 end
 
-post('/band') do
-  name = params.fetch('name')
+get('/bands') do
+  @bands = Band.all()
+  erb(:bands)
+end
+
+get('/venues') do
+  @venues = Venue.all()
+  erb(:venues)
+end
+
+post('/bands') do
+  name = params.fetch('name').titleize()
   Band.create({:name => name})
   @bands = Band.all()
-  erb(:index)
-end
-
-get('/bands/:id') do
-  @bands = Band.find(params.fetch('id'))
   erb(:bands)
 end
 
-patch('/bands/:id') do
-  @band = Band.find(params.fetch('id'))
+post('/venues') do
+  name = params.fetch('name')
+  Venue.create({:name => name})
+  @venues = Venue.all()
+  erb(:venues)
+end
+
+get('/band/:id') do
+  @bands = Band.find(params.fetch('id'))
+  @venues = Venue.all()
+  @venues_checked = @band.venues.ids
+  erb(:band_info)
+end
+
+patch('/band/:id') do
+  @band = Band.find(params.fetch'id'))
   name = params.fetch('name')
   @band.update(:name => name)
-  erb(:bands)
+  @venues =Venue.all()
+  @venues_checked = @band.venues.ids
+  erb(:band_info)
 end
 
-delete('/bands/:id') do
+delete('/band/:id') do
   @band = Band.find(params.fetch('id'))
   @band.delete()
   @bands = Band.all()
-  erb(:index)
+  erb(:bands)
+end
+  
+patch('/venue/band/:id') do
+  @band = Band.find(params.fetch("id").to_i())
+  venue_ids = params.fetch("venue_ids")
+  @band.update({:venue_ids => venue_ids})
+  @venues = Venue.all()
+  @venues_checked = @band.venues.ids
+  erb(:band)
+end
+
+get('/venue/:id') do
+  @venue = Venue.find(params.fetch("id"))
+  erb(:venue)
 end
