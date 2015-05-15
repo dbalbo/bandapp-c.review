@@ -3,28 +3,30 @@
 <p><h3>Change and add new bands to the list:</h3></p>
 
 
-  <form action="/band/<%= @band.id %>" method="post">
+  <form action="/band_info/<%= @band.id %>" method="post">
     <input type="hidden" name="_method" value="patch">
       <div class="form-group">
         <input name='name' id= 'name' type='text'
-          <button type="submit" class ='btn btn-success'>Add or change band</button>
       </div>
+      <button type="submit" class ='btn btn-success'>Add or change band</button>
   </form>
 
   <p><h3>Delete this Band</h3></p>
-    <form action="/band/<%= @band.id %>" method="post">
+    <form action="/band_info/<%= @band.id %>" method="post">
       <input type="hidden" name="_method" value="delete">
         <div class="form-group">
           <button type="submit" class="btn-danger">Delete</button>
         </div>
+    </form>
 
 
   <h1><%= @band.name() %></h1>
-
-        <h3>Select all venues that this band has played in:</h3>
+  <br>
+  <br>
+  <h3>Select all venues that this band has played in:</h3>
 
         <% if @venues.any?() %>
-          <form action="/venue/band/<%= @band.id %>" method="post">
+          <form action="/venue/band_info/<%= @band.id %>" method="post">
             <input type="hidden" name="_method" value="patch">
 
             <% @venues.each() do |venue| %>
@@ -34,6 +36,7 @@
                     <% if @venues_checked.include?(venue.id) %>
                       checked
                     <% end %>
+                      >
                     <% venue.name() %>
                   </label>
                 </div>
@@ -42,18 +45,3 @@
             <button type="submit">Update</button>
           </form>
         <% end %>
-
-<% if @band.venues().any?() %>
-  <h3>Here are all the venues that this band has played in:</h3>
-
-  <ul>
-    <% @band.venues().each() do |venue| %>
-      <li><%= venue.name() %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>There are no venues yet!</p>
-<% end %>
-
-
-<a href="/">Return to Main Page</a>

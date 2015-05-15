@@ -3,34 +3,6 @@
 <h2></h2>
 
 <p><a href="/venues">Add a new venue</a></p>
+<br>
+<br>
 <p><a href="/bands">Add a new band</a></p>
-
-
-<h3>Here is a list of bands:</h3>
-
-<% if @bands.any?() %>
-  <p>Click on a band to see whats up with them and where they have played:</p>
-
-  <ul>
-    <% @bands.each do |band| %>
-      <li><a href="/bands/<%= band.id() %>"><%= band.name() %></a></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>There are no bands added yet!</p>
-<% end %>
-
-
-<h3>Here are all the Venues that those clowns have played in:</h3>
-
-<% if @venues.any?() %>
-  <p>Click on a venue to see which bands have played up in there:</p>
-
-  <ul>
-    <% @venues.each do |venue| %>
-      <li><a href="/venues/<%= venue.id() %>"><%= venue.name() %></a></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>There are no venues added yet!</p>
-<% end %>

@@ -6,7 +6,7 @@
   <div class='form-group'>
     <label for="name">Band's name:</label>
       <input id="name" name="name" type="text">
-    </div>
+  </div>
     <button type="submit" class='btn btn-success'>Add band</button>
 </form>
 
@@ -15,6 +15,7 @@
   <ul>
     <% @bands.each() do |band| %>
     <li><a href='/band/<%= band.id %>'><%= band.name %></a></li>
-  <% end %>  
+  <% end %>
+  </ul> 
 
 <p><a href="/">Return to Main Page</a></p>
