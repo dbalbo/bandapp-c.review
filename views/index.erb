@@ -1,0 +1,19 @@
+
+<h1>Band And Venue Tracker</h1>
+<br><br>
+
+<h2>Pick a Band</h2>
+  <ul>
+    <% @bands.each() do |band| %>
+      <li><a href="/bands/<%= band.id %>"><%= band.name %></a></li>
+    <% end %>
+  </ul>
+  <br><br>
+
+<h4>Add a Band</h4>
+<form action="/band" method="post">
+  <div class="form-group">
+    <input name="name" id="name" type="text">
+    </div>
+  <button type="submit" class="btn btn-success">Add Band</button>
+</form>
