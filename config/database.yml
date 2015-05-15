@@ -1,0 +1,8 @@
+development:
+  adapter: postgresql
+  database: bandapp_development
+
+
+test:
+  adapter: postgresql
+  database: bandapp_test
